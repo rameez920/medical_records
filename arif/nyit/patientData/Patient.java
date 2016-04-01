@@ -1,20 +1,20 @@
 package arif.nyit.patientData;
 
-import java.util.Calendar;
+
 
 
 public class Patient {
 	
-	String name;
-	String patientID;
-	String address;
+	protected String name;
+	protected String patientID;
+	protected String address;
 	
-	int height; //(inches)
-	double weight;
+	protected int height; //(inches)
+	protected double weight;
 
-	Date birthDate;
-	Date initialVisit;
-	Date lastVisit;
+	protected Date birthDate;
+	protected Date initialVisit;
+	protected Date lastVisit;
 	
 	
 	
@@ -29,6 +29,10 @@ public class Patient {
 		this.birthDate = birthDate;
 		this.initialVisit = initialVisit;
 		this.lastVisit = lastVisit;
+	}
+	
+	public boolean equals(Patient patient) {
+		return this.patientID.equals(patient.getPatientID());
 	}
 
 	// need to account for month and day
