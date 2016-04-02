@@ -10,34 +10,41 @@ public class List {
 	protected PatientNode previous;
 	protected boolean found;
 	
-	public List(Patient head, Patient tail) {
-		this.tail = new PatientNode(tail, null);
-		this.head = new PatientNode(head, this.tail); 
-		current = this.head;
+	public List(Patient firstPatient) {
+		PatientNode startNode = new PatientNode(firstPatient, null);
+		head = startNode;
+		tail = startNode;
 		previous = null;
 	}
 	
+	
+	//adds a new node to the end of a list
 	public void add(Patient newPatient) {
-		PatientNode newNode = new PatientNode(newPatient, current.getNext());
-		previous = current;
-		current = newNode;
+		PatientNode newNode = new PatientNode(newPatient, null);
+		tail.setNext(newNode);
+		tail = newNode;
 	}
 	
-	public boolean contains(Patient patient) {
-		find(patient);
+	public PatientNode getHeadNode() {
+		return head;
+	}
+	
+	
+	public boolean contains(String patientID) {
+		find(patientID);
 		return found;
 	}
 	
-	public Patient get(Patient patient) {
-		find(patient);
+	public Patient get(String patientID) {
+		find(patientID);
 		if (found)
 			return current.getInfo();
 		else
 			return null;
 	}
 	
-	public boolean remove(Patient patient) {
-		find(patient);
+	public boolean remove(String patientID) {
+		find(patientID);
 		if (found) {
 		
 			if (current == head) 
@@ -49,13 +56,13 @@ public class List {
 		return found;
 	}
 	
-	protected void find(Patient patient) {
+	protected void find(String patientID) {
 		current = this.head;
 		found = false;
 		
-		while (current.next != null) {
+		while (current.getNext() != null) {
 			
-			if (current.getInfo().equals(patient)) {
+			if (current.getInfo().equals(patientID)) {
 				found = true;
 				return;
 			} 
@@ -72,6 +79,7 @@ public class List {
 			current = current.getNext();
 		}
 	}
+	
 	
 	public int size() {
 		PatientNode current = head;
@@ -95,9 +103,12 @@ public class List {
 		return current;
 	}
 	
+	
 	public void reset() {
 		current = head;
 		previous = null;
 	}
+	
+	
 
 }

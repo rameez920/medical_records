@@ -18,6 +18,8 @@ public class Patient {
 	
 	
 	
+	
+	
 	public Patient(String name, String patientID, String address, int height,
 			double weight, Date birthDate, Date initialVisit, Date lastVisit) {
 		
@@ -31,8 +33,8 @@ public class Patient {
 		this.lastVisit = lastVisit;
 	}
 	
-	public boolean equals(Patient patient) {
-		return this.patientID.equals(patient.getPatientID());
+	public boolean equals(String patientID) {
+		return this.patientID.equals(patientID);
 	}
 
 	// need to account for month and day
@@ -46,6 +48,10 @@ public class Patient {
 	
 	public int getTimeSinceLastVisit() {
 		return new Date().getYear() - lastVisit.getYear();
+	}
+	
+	public boolean isOverDue() {
+		return (getTimeSinceLastVisit() >= 3);
 	}
 	
 	public void setName(String name) {
@@ -110,6 +116,30 @@ public class Patient {
 	
 	public Date getLastVisit() {
 		return lastVisit;
+	}
+	
+	public void printInfo() {
+		if (isOverDue()) {
+			System.out.println(this.name);
+			System.out.println(this.patientID);
+			System.out.println(this.address);
+			System.out.println(this.height);
+			System.out.println(this.weight);
+			System.out.println(this.birthDate.toString());
+			System.out.println(this.initialVisit.toString());
+			System.out.println(this.lastVisit.toString());
+			System.out.println("Patient is overdue for appointment");
+		} else {
+			System.out.println(this.name);
+			System.out.println(this.patientID);
+			System.out.println(this.address);
+			System.out.println(this.height);
+			System.out.println(this.weight);
+			System.out.println(this.birthDate.toString());
+			System.out.println(this.initialVisit.toString());
+			System.out.println(this.lastVisit.toString());
+		}
+		
 	}
 	
 	public String toString() {

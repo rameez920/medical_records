@@ -3,8 +3,8 @@ package arif.nyit.List;
 import arif.nyit.patientData.Patient;
 
 public class PatientNode {
-	Patient patient;
-	PatientNode next;
+	private Patient patient;
+	private PatientNode next;
 	
 	public PatientNode(Patient patient, PatientNode next) {
 		this.patient = patient;

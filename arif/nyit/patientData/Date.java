@@ -45,6 +45,10 @@ public class Date {
 		this.day = day;
 	}
 	
+	public String toString() {
+		return day + "/" + month + "/" + year;
+	}
+	
 
 
 }
